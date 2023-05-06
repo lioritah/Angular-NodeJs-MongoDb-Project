@@ -1,0 +1,59 @@
+<div>
+  <div
+    class="p-2 bg-[whitesmoke] border-[4px] border-[whitesmoke] rounded-md shadow-lg"
+    *ngIf="cartService.$orderComplete | async as order"
+  >
+    <p>
+      delivery date:
+      {{ toDateString(cartService.$orderComplete.value?.deliveryDate) }}
+    </p>
+    <p>
+      order Date:
+      {{ toDateString(cartService.$orderComplete.value?.orderDate) }}
+    </p>
+    <p>delivery street: {{ authService.user.value?.addressStreet }}</p>
+    <p>delivery City: {{ authService.user.value?.addressCity }}</p>
+    <p>
+      card Last 4 Digits:
+      {{ cartService.$orderComplete.value?.cardLast4Digits }}
+    </p>
+    <p>total Price: {{ cartService.$orderComplete.value?.totalPrice }}</p>
+    <div
+      (click)="downloadReceipt()"
+      class="bg-slate-500 text-white p-2 rounded-lg w-fit ml-auto mr-auto cursor-pointer"
+    >
+      Download receipt
+    </div>
+    <div>
+      <div>
+        <div
+          class="grid w-full max-h-[1000px] overflow-y-scroll p-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+          *ngIf="cartService.$cartItems | async as cartItems"
+        >
+          <div
+            *ngFor="let item of cartItems"
+            class="flex flex-col items-center p-2 bg-[whitesmoke] border-[4px] border-[whitesmoke] rounded-md shadow-lg"
+          >
+            <h2 class="text-[#313131] font-bold p-2 min-w-max">
+              Name: {{ item.product.name }}
+            </h2>
+            <h3 class="text-[#313131] font-bold p-2 min-w-max">
+              Stock: {{ item.stock }}
+            </h3>
+            <h4 class="text-[#313131] font-bold p-2 min-w-max">
+              Price: {{ item.product.price }}₪
+            </h4>
+            <h3 class="text-[#313131] font-bold p-2 min-w-max">
+              Total: {{ item.stock * item.product.price }}
+            </h3>
+
+            <img
+              src="{{ item.product.image }}"
+              class="w-[100px] h-[100px] mt-2 mb-2"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

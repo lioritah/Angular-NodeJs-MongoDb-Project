@@ -1,0 +1,28 @@
+<!-- Reactive Form -->
+<div class="box">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+    <label for="email">Email: </label>
+    <input id="email" type="text" formControlName="email" />
+    <div
+      *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+      class="alert"
+    >
+      <div *ngIf="loginForm?.errors?.['required']">Email is required.</div>
+      <div *ngIf="email?.errors?.['email']">
+        Email must contains this form ****@****.com.
+      </div>
+    </div>
+
+    <label for="password">Password: </label>
+    <input id="password" type="string" step="0.01" formControlName="password" />
+    <div
+      *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+      class="alert"
+    >
+      <div *ngIf="password?.errors?.['required']">Password is required.</div>
+      <div *ngIf="password?.errors?.['min']">Password must be at least .</div>
+    </div>
+
+    <button type="submit" [disabled]="!loginForm.valid">Login</button>
+  </form>
+</div>

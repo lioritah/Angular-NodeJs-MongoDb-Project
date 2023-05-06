@@ -1,0 +1,15 @@
+<div class="bg-[#539353] h-full">
+  <nav>
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <div *ngIf="(authService.user | async)?.roles === 'admin'">
+      <a routerLink="/admin/new" routerLinkActive="active">Add Product</a>
+    </div>
+    <div *ngIf="(authService.user | async)?.roles === 'user'">
+      <a routerLink="/cart" routerLinkActive="active">Cart</a>
+    </div>
+    <div *ngIf="!(authService.user | async)" class="flex flex-col">
+      <a routerLink="/auth/login" routerLinkActive="active">Login</a>
+      <a routerLink="/auth/register" routerLinkActive="active">Register</a>
+    </div>
+  </nav>
+</div>

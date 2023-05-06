@@ -1,0 +1,14 @@
+<div *ngIf="popupService.message != null" class="popup">
+  <div
+    *ngIf="popupService.type === 'error'"
+    class="bg-[#bd3333] p-4 min-w-[150px] text-white"
+  >
+    {{ popupService.message }}
+  </div>
+  <div
+    *ngIf="popupService.type === 'info'"
+    class="bg-[#2ac64c] p-4 min-w-[150px] text-white"
+  >
+    {{ popupService.message }}
+  </div>
+</div>

@@ -1,0 +1,23 @@
+form {
+  width: 300px;
+  margin: auto;
+  text-align: left;
+}
+
+input,
+button,
+label {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: x-large;
+  margin-bottom: 30px;
+}
+input,
+button {
+  border: 1px solid black;
+}
+
+.alert {
+  color: red;
+  margin-top: 0px;
+}

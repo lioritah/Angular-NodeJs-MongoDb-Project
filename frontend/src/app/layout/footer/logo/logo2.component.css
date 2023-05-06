@@ -1,0 +1,11 @@
+div {
+  height: 10%;
+  padding: 3px 0;
+  position: fixed;
+  left: 55px;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}

@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AlreadyAuthenticatedGuard implements CanActivate {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return new Promise((resolve) => {
+      this.authService.token.subscribe((token) => {
+        if (token) {
+          this.router.navigate(['/home']);
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      });
+    });
+  }
+}

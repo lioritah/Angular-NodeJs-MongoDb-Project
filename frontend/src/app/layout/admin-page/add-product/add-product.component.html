@@ -1,0 +1,45 @@
+<div class="box">
+  <!-- Pre Register -->
+  <form [formGroup]="addProductForm" (ngSubmit)="onSubmitAddProduct()">
+    <div>
+      <h2>Add Product:</h2>
+      <span class="pr-2 pl-2">Select category: </span>
+      <select
+        id="category"
+        type="text"
+        formControlName="category"
+        required="true"
+        #selectCategory
+        *ngIf="adminService.$categories | async as categories"
+        (change)="onChangeCategory(selectCategory.value)"
+        class="p-2 mt-2 mb-2 pr-4 pl-4 border-2 border-[lightgray] rounded-md"
+      >
+        <option value="-1">General</option>
+        <option *ngFor="let category of categories" value="{{ category._id }}">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="name">name: </label>
+      <input id="name" type="text" formControlName="name" required="true" />
+    </div>
+    <div>
+      <label for="image">image: </label>
+      <input
+        name="image"
+        #input
+        type="file"
+        accept="image/*"
+        required
+        (change)="onSelectImage(input)"
+      />
+    </div>
+    <div>
+      <label for="price">price: </label>
+      <input id="price" type="number" formControlName="price" required="true" />
+    </div>
+    <button type="submit">Add</button>
+  </form>
+</div>

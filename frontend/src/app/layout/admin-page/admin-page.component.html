@@ -1,0 +1,25 @@
+<label> Search: </label>
+<input
+  class="p-2 mt-2 mb-2 pr-4 pl-4 border-2 border-[lightgray] rounded-md"
+  type="text"
+  name="search"
+  [(ngModel)]="searchText"
+  autocomplete="off"
+  placeholder="&#61442; Search Product"
+/>
+<div
+  *ngIf="productService.$showingProducts | async as products"
+  class="grid w-full max-h-[700px] overflow-y-scroll p-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
+>
+  <div
+    *ngFor="let product of products | filter : searchText"
+    class="flex flex-col items-center p-2 bg-[whitesmoke] border-[4px] border-[whitesmoke] rounded-md shadow-lg"
+  >
+    <h2 class="text-[#313131] font-bold p-2 min-w-max">{{ product.name }}</h2>
+    <h4 class="text-[#313131] font-bold p-2 min-w-max">{{ product.price }}₪</h4>
+
+    <img src="{{ product.image }}" class="w-[100px] h-[100px] mt-2 mb-2" />
+
+    <a [routerLink]="'/admin/' + product._id + '/edit'">Edit Product</a>
+  </div>
+</div>

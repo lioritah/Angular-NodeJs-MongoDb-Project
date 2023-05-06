@@ -1,0 +1,12 @@
+.app-container {
+  display: grid;
+  grid-template-columns: 15% 85%;
+  box-sizing: border-box;
+  grid-template-rows: 1fr;
+}
+
+.layout {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+}

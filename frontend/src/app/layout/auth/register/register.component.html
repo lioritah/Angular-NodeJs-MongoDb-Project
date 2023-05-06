@@ -1,0 +1,153 @@
+<!-- Reactive Form -->
+<div class="box">
+  <!-- Pre Register -->
+  <form
+    *ngIf="!isAfterPreRegister()"
+    [formGroup]="preRegisterForm"
+    (ngSubmit)="onSubmitPreRegister()"
+  >
+    <label for="passportId">passportId: </label>
+    <input
+      id="passportId"
+      type="text"
+      formControlName="passportId"
+      required="true"
+    />
+    <div
+      *ngIf="passportId?.invalid && (passportId?.dirty || passportId?.touched)"
+      class="alert"
+    >
+      <div *ngIf="passportId?.errors?.['required']">
+        Passport Id is required.
+      </div>
+      <div *ngIf="passportId?.errors?.['min']">
+        Passport Id must be at least 9.
+      </div>
+    </div>
+    <label for="email">Email: </label>
+    <input id="email" type="email" formControlName="email" required="true" />
+    <div
+      *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+      class="alert"
+    >
+      <div *ngIf="email?.errors?.['required']">email is required.</div>
+    </div>
+    <label for="password">password: </label>
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      required="true"
+    />
+    <div
+      *ngIf="password?.invalid && (password?.dirty || password?.touched)"
+      class="alert"
+    >
+      <div *ngIf="password?.errors?.['required']">Password is required.</div>
+      <div *ngIf="password?.errors?.['minLength']">
+        Password must be at least 6.
+      </div>
+    </div>
+    <label for="confirmPassword">confirm Password: </label>
+    <input
+      id="confirmPassword"
+      type="text"
+      formControlName="confirmPassword"
+      required
+    />
+    <div
+      *ngIf="
+        confirmPassword?.invalid &&
+        (confirmPassword?.dirty || confirmPassword?.touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="confirmPassword?.errors?.['required']">
+        confirm Password is required.
+      </div>
+      <div *ngIf="confirmPassword?.errors?.['minLength']">
+        Password must be at least 6.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!preRegisterForm.valid">Next</button>
+
+    <p
+      *ngIf="isValidPreRegister === false"
+      class="p-2 text-[#bd3333] text-center"
+    >
+      User with this email/passport id already exists
+    </p>
+  </form>
+
+  <!--  Register -->
+  <form
+    *ngIf="isAfterPreRegister()"
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmitRegister()"
+  >
+    <label for="firstName">First name: </label>
+    <input
+      id="firstName"
+      type="text"
+      formControlName="firstName"
+      required="true"
+    />
+    <div
+      *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)"
+      class="alert"
+    >
+      <div *ngIf="firstName?.errors?.['required']">First Name is required.</div>
+      <div *ngIf="firstName?.errors?.['min']">
+        First Name must contain at least 2 characters.
+      </div>
+    </div>
+    <label for="lastName">Last name: </label>
+    <input
+      id="lastName"
+      type="text"
+      formControlName="lastName"
+      required="true"
+    />
+    <div
+      *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)"
+      class="alert"
+    >
+      <div *ngIf="lastName?.errors?.['required']">Last Name is required.</div>
+    </div>
+
+    <label for="addressCity">Address - City: </label>
+    <input
+      id="addressCity"
+      type="text"
+      formControlName="addressCity"
+      required
+    />
+    <div
+      *ngIf="
+        addressCity?.invalid && (addressCity?.dirty || addressCity?.touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="addressCity?.errors?.['required']">City is required.</div>
+    </div>
+
+    <label for="addressStreet">Address - Street: </label>
+    <input
+      id="addressStreet"
+      type="text"
+      formControlName="addressStreet"
+      required="true"
+    />
+    <div
+      *ngIf="
+        addressStreet?.invalid &&
+        (addressStreet?.dirty || addressStreet?.touched)
+      "
+      class="alert"
+    >
+      <div *ngIf="addressStreet?.errors?.['required']">Street is required.</div>
+    </div>
+    <button type="submit" [disabled]="!registerForm.valid">Register</button>
+  </form>
+</div>

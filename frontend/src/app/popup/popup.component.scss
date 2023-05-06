@@ -1,0 +1,17 @@
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  animation: popupaAnimation 0.5s linear;
+  border: 6px solid black;
+}
+
+@keyframes popupaAnimation {
+  from {
+    transform: translateY(100px);
+  }
+
+  to {
+    transform: translateY(0px);
+  }
+}

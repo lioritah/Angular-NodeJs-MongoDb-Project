@@ -1,0 +1,19 @@
+<div class="grid">
+  <div class="products-container">
+    <div class="font-bold p-4 border-b-2 border-[lightgray]">Products</div>
+
+    <span class="pr-2 pl-2">Select category: </span>
+    <select
+      #selectCategory
+      *ngIf="productService.$categories | async as categories"
+      (change)="onChangeCategory(selectCategory.value)"
+      class="p-2 mt-2 mb-2 pr-4 pl-4 border-2 border-[lightgray] rounded-md"
+    >
+      <option value="-1">General</option>
+      <option *ngFor="let category of categories" value="{{ category._id }}">
+        {{ category.categoryName }}
+      </option>
+    </select>
+    <app-product-list></app-product-list>
+  </div>
+</div>

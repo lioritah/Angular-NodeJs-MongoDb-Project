@@ -1,0 +1,39 @@
+<form
+  [formGroup]="orderForm"
+  (ngSubmit)="submitOrder()"
+  class="flex flex-col justify-center items-center form-order"
+>
+  <p>Delivery Date</p>
+  <input type="date" />
+
+  <p>Billing information</p>
+
+  <label>Name on card</label>
+  <input type="text" />
+
+  <label>Card number</label>
+  <input formControlName="cardNumber" type="text" />
+
+  <div class="flex flex-row gap-4">
+    <div class="flex flex-col">
+      <label>Card Expiration date</label>
+      <input type="date" />
+    </div>
+
+    <div class="flex flex-col">
+      <label>Card CVV</label>
+      <input class="max-w-[70px]" type="text" />
+    </div>
+  </div>
+
+  <label>Delivery date</label>
+  <input formControlName="deliveryDate" type="date" />
+
+  <button
+    pButton
+    style="color: white; background-color: green"
+    label="Send order"
+    type="submit"
+    [disabled]="orderForm.invalid"
+  ></button>
+</form>

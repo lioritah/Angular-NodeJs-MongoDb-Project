@@ -1,0 +1,31 @@
+<div class="layout">
+  <header><app-header></app-header></header>
+  <div class="app-container">
+    <aside><app-menu></app-menu></aside>
+    <main><router-outlet></router-outlet></main>
+    <app-popup></app-popup>
+  </div>
+  <div
+    *ngIf="popUpService.showingLogoutRequest"
+    class="fixed w-full h-full grid place-items-center bg-[rgba(0,0,0,0.5)] z-[9999]"
+  >
+    <div class="rounded-lg bg-slate-100 p-5 min-w-[300px] min-h-max">
+      <p>Are you sure you would like to log out?</p>
+      <div class="flex flex-row justify-around p-2">
+        <button
+          (click)="authService.logout()"
+          class="bg-[#33bd68] p-2 pl-4 pr-4 rounded-lg text-white"
+        >
+          Yes
+        </button>
+        <button
+          (click)="popUpService.hideLogoutRequest()"
+          class="bg-[#bd3333] p-2 pl-4 pr-4 rounded-lg text-white"
+        >
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+  <footer><app-footer></app-footer></footer>
+</div>

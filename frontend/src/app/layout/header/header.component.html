@@ -1,0 +1,10 @@
+<div class="flex flex-row justify-between items-center bg-slate-400 z-[9500]">
+  <app-logo></app-logo>
+  <div>{{ authService.user.value?.email }}</div>
+  <button
+    pButton
+    label="Logout"
+    *ngIf="authService.user | async as user"
+    (click)="popUpService.showLogoutRequest()"
+  ></button>
+</div>

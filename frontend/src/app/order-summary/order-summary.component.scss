@@ -1,0 +1,15 @@
+.form-order {
+  input {
+    border: 1px solid lightgray;
+    padding: 4px;
+    border-radius: 4px;
+  }
+  p {
+    margin-top: 16px;
+    font-weight: bold;
+  }
+  label {
+    font-size: 12px;
+  }
+  row-gap: 8px;
+}

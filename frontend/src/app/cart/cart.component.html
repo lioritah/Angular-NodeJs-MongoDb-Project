@@ -1,0 +1,19 @@
+<div *ngIf="cartService.$cart | async as cart">
+  <div *ngIf="cartService.$cartItems | async as cartItems">
+    <div
+      class="grid w-full max-h-[1000px] overflow-y-scroll p-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3 gap-4"
+    >
+      <div
+        *ngFor="let item of cartItems"
+        class="flex flex-col justify-center text-[12px] items-center gap-2 bg-slate-400 p-2 mr-4 shadow-md ml-4 rounded-lg text-white"
+      >
+        <img src="{{ item.product.image }}" class="w-[30px] h-[30px]" />
+        <p>Name: {{ item.product.name }}</p>
+        <p>Price: {{ item.product.price }}</p>
+        <p>Stock: {{ item.stock }}</p>
+
+        <p>Total: {{ item.stock * item.product.price }}</p>
+      </div>
+    </div>
+  </div>
+</div>

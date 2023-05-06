@@ -1,0 +1,63 @@
+<div class="box">
+  <!-- Pre Register -->
+  <form
+    class="border-2 border-[red] w-96 text-left m-auto"
+    [formGroup]="editProductForm"
+    (ngSubmit)="onSubmitEditProduct()"
+  >
+    <div>
+      <h2>Edit Product:</h2>
+      <span class="pr-2 pl-2">Select category: </span>
+      <select
+        id="category"
+        type="text"
+        formControlName="category"
+        #selectCategory
+        *ngIf="adminService.$categories | async as categories"
+        (change)="onChangeCategory(selectCategory.value)"
+        class="p-2 mt-2 mb-2 pr-4 pl-4 border-2 border-[lightgray] rounded-md"
+      >
+        <option value="-1">General</option>
+        <option *ngFor="let category of categories" value="{{ category._id }}">
+          {{ category.categoryName }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="name">name: </label>
+      <input
+        class="border px-1 border-solid border-black mb-3 w-80 m-1"
+        id="name"
+        type="text"
+        formControlName="name"
+      />
+    </div>
+    <div>
+      <label for="image">image: </label>
+      <input
+        class="border px-1 border-solid border-black mb-3 w-80"
+        name="image"
+        type="file"
+        #input
+        (change)="onSelectImage(input)"
+        accept="image/*"
+      />
+    </div>
+    <div>
+      <label for="price">price: </label>
+      <input
+        class="border px-1 border-solid border-black mb-3 w-80"
+        id="price"
+        type="number"
+        formControlName="price"
+      />
+    </div>
+    <button
+      class="border px-1 border-solid border-black mb-3 w-80 text-center"
+      type="submit"
+    >
+      Edit
+    </button>
+  </form>
+</div>
